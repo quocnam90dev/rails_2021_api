@@ -3,7 +3,7 @@ class LoansController < ApiController
 
   # GET /loans
   def index
-    @loans = Loan.all
+    @loans = Loan.all.order("id DESC")
 
     render json: @loans
   end
@@ -46,6 +46,6 @@ class LoansController < ApiController
 
     # Only allow a list of trusted parameters through.
     def loan_params
-      params.require(:loan).permit(:purpose, :amountRequired, :loanTerm, :dateSigned, :reason, :repaid)
+      params.require(:loan).permit(:purpose, :amountRequired, :loanTerm, :dateSigned, :reason, :repaid, :approved)
     end
 end
